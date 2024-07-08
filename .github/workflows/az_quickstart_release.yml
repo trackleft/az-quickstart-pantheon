@@ -20,7 +20,9 @@ jobs:
           TARGET_VERSION="${{ github.event.client_payload.version }}"
           TARGET_MINOR_VERSION=$(echo $TARGET_VERSION | awk -F. '{print $1"."$2}')
           echo "CURRENT_MINOR_VERSION=$CURRENT_MINOR_VERSION" >> $GITHUB_ENV
+          echo "### :white_check_mark: CURRENT_MINOR_VERSION $CURRENT_MINOR_VERSION" >> $GITHUB_STEP_SUMMARY
           echo "TARGET_MINOR_VERSION=$TARGET_MINOR_VERSION" >> $GITHUB_ENV
+          echo "### :white_check_mark: TARGET_MINOR_VERSION $TARGET_MINOR_VERSION" >> $GITHUB_STEP_SUMMARY
 
       - name: Create new branch and PR
         if: env.CURRENT_MINOR_VERSION == env.TARGET_MINOR_VERSION
